@@ -1,119 +1,113 @@
-# Dictionary of movies
-movies = [
-    {
-        "name": "Usual Suspects",
-        "imdb": 7.0,
-        "category": "Thriller"
-    },
-    {
-        "name": "Hitman",
-        "imdb": 6.3,
-        "category": "Action"
-    },
-    {
-        "name": "Dark Knight",
-        "imdb": 9.0,
-        "category": "Adventure"
-    },
-    {
-        "name": "The Help",
-        "imdb": 8.0,
-        "category": "Drama"
-    },
-    {
-        "name": "The Choice",
-        "imdb": 6.2,
-        "category": "Romance"
-    },
-    {
-        "name": "Colonia",
-        "imdb": 7.4,
-        "category": "Romance"
-    },
-    {
-        "name": "Love",
-        "imdb": 6.0,
-        "category": "Romance"
-    },
-    {
-        "name": "Bride Wars",
-        "imdb": 5.4,
-        "category": "Romance"
-    },
-    {
-        "name": "AlphaJet",
-        "imdb": 3.2,
-        "category": "War"
-    },
-    {
-        "name": "Ringing Crime",
-        "imdb": 4.0,
-        "category": "Crime"
-    },
-    {
-        "name": "Joking muck",
-        "imdb": 7.2,
-        "category": "Comedy"
-    },
-    {
-        "name": "What is the name",
-        "imdb": 9.2,
-        "category": "Suspense"
-    },
-    {
-        "name": "Detective",
-        "imdb": 7.0,
-        "category": "Suspense"
-    },
-    {
-        "name": "Exam",
-        "imdb": 4.2,
-        "category": "Thriller"
-    },
-    {
-        "name": "We Two",
-        "imdb": 7.2,
-        "category": "Romance"
-    }
-]
+#1 get_string
+class get_String:
+    def __init__(self):
+        self.string=''
+    def getstr(self):
+        self.string=str(input())
+    def printup(self):
+        print(self.string.upper())
 
-#1
-def is_above_5_5(movie):
-    return movie["imdb"] > 5.5
+ans=get_String()
+ans.getstr()
+ans.printup() 
 
-#2
-def filter_above_5_5(movies):
-    return [movie for movie in movies if is_above_5_5(movie)]
+#2 shape,square
+class shape:
+    def __init__(self):
+        pass
+    
+    def area(self):
+        return 0
+    
+class square(shape):
+    def __init__(self, side_length):
+        super().__init__
+        self.side_length = side_length
+        
+    def area(self):
+        return self.side_length*self.side_length
+    
+square = square(5)
+print(square.area())
+shape = shape()
+print(shape.area())
 
-#3
-def filter_by_category(movies, category):
-    return [movie for movie in movies if movie["category"] == category]
+#3 rectangle
+class rectangle(shape):
+    def __init__(self, length, width):
+        super().__init__
+        self.length = length
+        self.width = width
+    def area (self):
+        return(self.length * self.width)
 
-#4
-def average_imdb_score(movies):
-    if not movies:
-        return 0.0
-    total_score = sum(movie["imdb"] for movie in movies)
-    return total_score / len(movies)
+rectangle = rectangle(5, 4)
+print(rectangle.area())
+shape=shape()
+print(shape.area())
 
-#5
-def average_imdb_score_by_category(movies, category):
-    category_movies = filter_by_category(movies, category)
-    return average_imdb_score(category_movies)
+#4 point
+import math
+class Point:
+    def __init__(self, x, y, movedx, movedy):
+        self.x = x
+        self.y = y
+        self.movedx = movedx
+        self.movedy = movedy  
+    def show(self):
+        return( self.x, self.y)
+    def move(self):
+        self.movedx = self.movedx + self.x
+        self.movedy = self.movedy + self.y
+        return(self.movedx,self.movedy)
+    def dist(self):
+        return(math.sqrt((self.x - self.movedx)**2 + (self.y - self.movedy)**2))
 
 
-above_5_5_movies = filter_above_5_5(movies)
-romance_movies = filter_by_category(movies, "Romance")
-avg_imdb_all = average_imdb_score(movies)
-avg_imdb_romance = average_imdb_score_by_category(movies, "Romance")
+point = Point(1, 2, 3, 3)
+print(point.show())
+print(point.move())
+print(point.dist())
+        
+#5 bank_account     
+class bank_account():
+    def __init__(self, owner, balance=0):
+        self.owner = owner
+        self.balance = balance
+    def dep(self, amount):
+        if(amount>=0):
+             self.balance = self.balance + amount
+             return(self.balance)
+        else:
+            return("amount is less than 0")
+    def wd(self, amount):
+        if amount>=0 and amount <=self.balance:
+            self.balance=self.balance-amount
+            return(self.balance)
+        else:
+            return("amount is greater than balance")
+account = bank_account("Daniyar", 1000000)
+print(account.dep(500000))
+print(account.wd(800000))
 
-print("Movies with IMDB score above 5.5:")
-for movie in above_5_5_movies:
-    print(movie["name"])
 
-print("\nRomance Movies:")
-for movie in romance_movies:
-    print(movie["name"])
+#6 prime numbers
+def prime_num(x):
+    a=0
+    if(x==0 or x==1):
+        return False
+    for i in range(2,x):
+        if x%i==0:
+            a=a+1
+    if a==0:
+        return True
+    else:
+        return False
+        
+list_nums = [int(s) for s in input().split()]
+primes = list(filter(lambda x:prime_num(x), list_nums))
+for i in range(len(primes)):
+    print(primes[i], end=' ')
 
-print("\nAverage IMDB Score for All Movies:", avg_imdb_all)
-print("\nAverage IMDB Score for Romance Movies:", avg_imdb_romance)
+        
+        
